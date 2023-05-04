@@ -102,9 +102,9 @@ class Yolo_loss(nn.Module):
 
         for i in range(3):
             all_anchors_grid = [(w / self.strides[i], h / self.strides[i]) for w, h in self.anchors]
-            masked_anchors = np.array([all_anchors_grid[j] for j in self.anch_masks[i]], dtype=np.float32)
-            ref_anchors = np.zeros((len(all_anchors_grid), 4), dtype=np.float32)
-            ref_anchors[:, 2:] = np.array(all_anchors_grid, dtype=np.float32)
+            masked_anchors = np.array([all_anchors_grid[j] for j in self.anch_masks[i]], dtype=np.float)
+            ref_anchors = np.zeros((len(all_anchors_grid), 4), dtype=np.float)
+            ref_anchors[:, 2:] = np.array(all_anchors_grid, dtype=np.float)
             ref_anchors = torch.from_numpy(ref_anchors)
             # calculate pred - xywh obj cls
             fsize = image_size // self.strides[i]
